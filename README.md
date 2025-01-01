@@ -1,4 +1,4 @@
-# simple_pulsar_example
+# Simple Pulsar Example
 This is a basic example that I have put together using a bunch of LLMs to demonstrate the use of pulsar. In this simple example we stream video from a client web camera to a pulsar node and retrieve it using another client. 
 
 ### Why use pulsar? 
