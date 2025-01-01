@@ -48,4 +48,6 @@ graph LR;
    ```
 
    2. Create a pulsar topic for the video stream
-   ```docker exec -it pulsar bash bin/pulsar-admin topics create persistent://public/default/video-stream```
+   ```bash
+   docker exec -it pulsar bash bin/pulsar-admin topics create persistent://public/default/video-stream
+   ```
