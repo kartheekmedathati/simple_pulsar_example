@@ -46,3 +46,6 @@ graph LR;
    ```bash
    sh start_pulsar_node.sh
    ```
+
+   2. Create a pulsar topic for the video stream
+   ```docker exec -it pulsar bash bin/pulsar-admin topics create persistent://public/default/video-stream```
