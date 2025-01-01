@@ -1,7 +1,7 @@
 # simple_pulsar_example
 This is a simple pulsar example that I have put together using a bunch of LLMs
 
-{% mermaid %}
+```mermaid
 graph TD;
     A[WebSocket Client] -->|Sends Message| B["WebSocket API (Pulsar)"];
     B -->|Process Message| C["Message Broker (Pulsar)"];
@@ -10,4 +10,4 @@ graph TD;
     B -->|Monitor Connection| E[Heartbeat & Latency Monitoring];
     E -->|Monitor Health| F[Performance Metrics];
     F -->|Optimize Operations| C;
-{% endmermaid %}
+```
