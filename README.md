@@ -14,11 +14,11 @@ graph LR;
 ```
 ```mermaid
 graph TD;
-    A[WebSocket Client] -->|Sends Message| B[WebSocket API (Pulsar)];
-    B -->|Process Message| C[Message Broker (Pulsar)];
+    A[WebSocket Client] -->|Sends Message| B["WebSocket API (Pulsar)"];
+    B -->|Process Message| C["Message Broker (Pulsar)"];
     C -->|Deliver Message| D[WebSocket Consumer];
     D -->|Acknowledges Message| C;
-    C -->|Confirm Delivery| B[WebSocket API (Pulsar)];
+    C -->|Confirm Delivery| B["WebSocket API (Pulsar)"];
     B -->|Send Acknowledgment| A[WebSocket Client];
     B -->|Monitor Connection| E[Heartbeat & Latency Monitoring];
     E -->|Monitor Health| F[Performance Metrics];
