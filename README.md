@@ -39,3 +39,10 @@ graph LR;
     E -->|Monitor Health| F[Performance Metrics];
     F -->|Optimize Operations| C;
 ```
+
+### Use
+   1. Launch the Pulsar node:
+
+   ```bash
+   sh start_pulsar_node.sh
+   ```
