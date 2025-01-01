@@ -40,4 +40,20 @@ graph TD;
     B -->|Error Handling & Connection Issues| G[WebSocket Error Handling];
     G -->|Alert Client| A;
 ```
+```mermaid
+graph LR;
+    A[WebSocket Client] -->|Sends Message| B[WebSocket API (Pulsar)];
+    B -->|Process Message| C[Message Broker (Pulsar)];
+    C -->|Deliver Message| D[WebSocket Consumer];
+    D -->|Acknowledges Message| C;
+    C -->|Confirm Delivery| B;
+    B -->|Send Acknowledgment| A;
+    
+    %% Monitoring and Error Handling
+    B -->|Monitor Connection| E[Heartbeat & Latency Monitoring];
+    E -->|Monitor Health| F[Performance Metrics];
+    F -->|Optimize Operations| C;
+    B -->|Error Handling & Connection Issues| G[WebSocket Error Handling];
+    G -->|Alert Client| A;
+```
 
