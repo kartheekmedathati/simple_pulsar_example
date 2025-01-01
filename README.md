@@ -1,3 +1,62 @@
+<style>
+    /* Apply consistent font and size across the entire page */
+    body {
+        font-family: Arial, sans-serif;  /* Set consistent font */
+        font-size: 16px;  /* Set default font size */
+        line-height: 1.6;  /* Improve readability with line spacing */
+        color: #333;  /* Dark grey text color for readability */
+        margin: 20px;  /* Add some margin around the page */
+    }
+    
+    /* Style the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;  /* Adjust table font size if needed */
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd; /* Light border for table */
+    }
+
+    th {
+        background-color: #f4f4f4; /* Light background for headers */
+    }
+
+    /* Style headers */
+    h1, h2, h3 {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        color: #1a1a1a;
+    }
+
+    /* Links */
+    a {
+        color: #1a73e8; /* Standard link color */
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline; /* Add underline on hover for links */
+    }
+
+    /* Style lists */
+    ul, ol {
+        margin: 20px 0;
+        padding-left: 20px;
+    }
+
+    /* Style blockquotes */
+    blockquote {
+        border-left: 4px solid #ddd;
+        padding-left: 15px;
+        margin: 20px 0;
+        font-style: italic;
+    }
+
+</style>
+
 # Simple Pulsar Example
 This is a basic example that I have put together using a bunch of LLMs to demonstrate the use of pulsar. In this simple example we stream video from a client web camera to a pulsar node and retrieve it using another client. 
 
