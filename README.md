@@ -2,26 +2,42 @@
 This is a simple pulsar example that I have put together using a bunch of LLMs
 
 ```mermaid
-graph LR;
-    A[WebSocket Client] -->|Sends Message| B["WebSocket API (Pulsar)"];
-    B -->|Process Message| C["Message Broker (Pulsar)"];
-    C -->|Store Message| D[Topic Storage];
-    D -->|Acknowledge Receipt| B;
-    
-    C -->|Deliver Message| E[WebSocket Consumer];
-    E -->|Acknowledges Message| C;
-    
-    E -->|Send Acknowledgment| B;
-    B -->|Send Acknowledgment to Client| A;
+graph TD;
+    %% Define colors
+    classDef client fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef pulsar fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef consumer fill:#fbf,stroke:#333,stroke-width:2px;
 
-    subgraph Connection Monitoring
-        F[Heartbeat & Latency Monitoring] 
-        C -->|Monitor Connection Status| F;
-        F -->|Provide Feedback on Delivery Status| G[Performance Metrics];
-        G -->|Optimize Operations| C;
+    subgraph Web_Client [Web Client]
+        direction TB
+        A[WebSocket Client]:::client -->|Sends Message| B["WebSocket API (Pulsar)"]:::pulsar;
     end
 
-    %% Connection-Level Acknowledgment
-    C -->|Detect Delivery Failure| H[Connection-Level Acknowledgment];
-    H -->|Notify Client of Failure| A;
+    subgraph Pulsar_Module [Pulsar Module]
+        direction TB
+        B -->|Process Message| C["Message Broker (Pulsar)"]:::pulsar;
+        C -->|Store Message| D[Topic Storage]:::pulsar;
+        D -->|Acknowledge Receipt| B;
+
+        C -->|Deliver Message| E[WebSocket Consumer]:::consumer;
+        E -->|Acknowledges Message| C;
+        
+        E -->|Send Acknowledgment| B;
+        B -->|Send Acknowledgment to Client| A;
+
+        %% Connection-Level Acknowledgment
+        C -->|Detect Delivery Failure| F[Connection-Level Acknowledgment];
+        F -->|Notify Client of Failure| A;
+
+        %% Latency and Monitoring
+        G[Heartbeat & Latency Monitoring]:::pulsar;
+        C -->|Monitor Connection Status| G;
+        G -->|Provide Feedback on Delivery Status| H[Performance Metrics]:::pulsar;
+        H -->|Optimize Operations| C;
+    end
+
+    subgraph Web_Consumer [Web Consumer]
+        direction TB
+        E:::consumer;
+    end
 ```
