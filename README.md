@@ -25,15 +25,15 @@ graph TD;
         E -->|Acknowledges Message| C;
 
         E -->|Send Acknowledgment| B;
-        B -->|Send Acknowledgment to Client| A1;  % Acknowledgment back to first client
-        B -->|Send Acknowledgment to Client| A2;  % Acknowledgment back to second client
-        B -->|Send Acknowledgment to Client| A3;  % Acknowledgment back to third client
+        B -->|Send Acknowledgment to Client 1| A1;  
+        B -->|Send Acknowledgment to Client 2| A2;  
+        B -->|Send Acknowledgment to Client 3| A3;  
 
         %% Connection-Level Acknowledgment
         C -->|Detect Delivery Failure| F[Connection-Level Acknowledgment];
-        F -->|Notify Client of Failure| A1;  % Notify first client
-        F -->|Notify Client of Failure| A2;  % Notify second client
-        F -->|Notify Client of Failure| A3;  % Notify third client
+        F -->|Notify Client of Failure 1| A1;  
+        F -->|Notify Client of Failure 2| A2;  
+        F -->|Notify Client of Failure 3| A3;  
 
         %% Latency and Monitoring
         G[Heartbeat & Latency Monitoring]:::pulsar;
