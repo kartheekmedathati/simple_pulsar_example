@@ -46,8 +46,29 @@ graph LR;
    ```bash
    sh start_pulsar_node.sh
    ```
-
    2. Create a pulsar topic for the video stream
    ```bash
    docker exec -it pulsar bash bin/pulsar-admin topics create persistent://public/default/video-stream
    ```
+   3. Getting into the dev environment
+   ```bash
+   sh launch_pulsar_dev_docker.sh
+   ```
+   4.Log in to the container instance:
+   ```bash
+   docker exec -it <container_name_or_id> /bin/bash
+   ```
+   5. Launch the program to send camera stream to the pulsar container:
+   ```bash
+   python3 stream_camera_to_pulsar.py
+   ```
+   This will open the camera and display the current stream in a opencv window
+
+   6. Launch another terminal instance similar to the above and:
+   ```bash
+   python3 consume_pulsar_stream.py
+   ```
+   This should display the stream received by the webclient from the pulsar message broker. 
+
+   
+
