@@ -56,4 +56,34 @@ graph LR;
     B -->|Error Handling & Connection Issues| G[WebSocket Error Handling];
     G -->|Alert Client| A;
 ```
+```mermaid
+graph LR;
+    %% Define colors
+    classDef client fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef pulsar fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef consumer fill:#fbf,stroke:#333,stroke-width:2px;
+    classDef monitoring fill:#cce5ff,stroke:#007bff,stroke-width:2px;
+    classDef error fill:#ffcccc,stroke:#ff0000,stroke-width:2px;
+
+    %% Web Client
+    A[WebSocket Client]:::client -->|Sends Message| B["WebSocket API (Pulsar)"]:::pulsar;
+
+    %% Pulsar Super Block
+    subgraph Pulsar_Components [Pulsar Components]
+        direction TB
+        B -->|Process Message| C["Message Broker (Pulsar)"]:::pulsar;
+        C -->|Deliver Message| D[WebSocket Consumer]:::consumer;
+        D -->|Acknowledges Message| C;
+        C -->|Confirm Delivery| B;
+        B -->|Send Acknowledgment| A; 
+    end
+
+    %% Monitoring and Error Handling
+    B -->|Monitor Connection| E[Heartbeat & Latency Monitoring]:::monitoring;
+    E -->|Monitor Health| F[Performance Metrics]:::monitoring;
+    F -->|Optimize Operations| C;
+
+    B -->|Error Handling & Connection Issues| G[WebSocket Error Handling]:::error;
+    G -->|Alert Client| A; 
+```
 
