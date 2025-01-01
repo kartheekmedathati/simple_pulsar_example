@@ -13,7 +13,8 @@ graph LR;
     F -->|Optimize Operations| C;
 ```
 
-<!--```mermaid
+<!--
+```mermaid
 graph TD;
     %% Define colors
     classDef client fill:#f9f,stroke:#333,stroke-width:2px;
